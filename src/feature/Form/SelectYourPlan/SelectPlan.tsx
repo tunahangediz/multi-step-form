@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import FormHeader from "../FormHeader";
 import PlanCard from "./PlanCard";
 import Toggle from "./Toggle";
@@ -21,10 +21,14 @@ const cards = [
 const SelectPlan: FC<Props> = ({ register, setYearly, yearly, getValues }) => {
   const value =
     typeof getValues().plan == "string"
-      ? JSON.parse(getValues().values.plan)
+      ? JSON.parse(getValues().plan)
       : getValues().plan;
 
   const [selected, setSelected] = useState<string>(value.title);
+  useEffect(() => {
+    setSelected(value.title);
+    console.log(value.title + "fdsf");
+  }, []);
 
   return (
     <div>
