@@ -10,9 +10,13 @@ type Props = {
   getValues: () => any;
 };
 const cards = [
-  { title: "Arcade", price: 9, src: "src/assets/images/icon-arcade.svg" },
-  { title: "Advanced", price: 12, src: "src/assets/images/icon-advanced.svg" },
-  { title: "Pro", price: 15, src: "src/assets/images/icon-pro.svg" },
+  { title: "Arcade", price: 9, src: "public/assets/images/icon-arcade.svg" },
+  {
+    title: "Advanced",
+    price: 12,
+    src: "public/assets/images/icon-advanced.svg",
+  },
+  { title: "Pro", price: 15, src: "public/assets/images/icon-pro.svg" },
 ];
 const SelectPlan: FC<Props> = ({ register, setYearly, yearly, getValues }) => {
   const value = getValues().plan;
