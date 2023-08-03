@@ -66,7 +66,7 @@ function App() {
   return (
     <>
       {/* <YoutubeForm /> */}
-      <div className="flex w-full items-center justify-center">
+      <div className="flex w-full items-center justify-center h-screen">
         <div className="border-2 rounded-md relative p-4 max-w-4xl w-full flex">
           <Stepper
             goTo={goTo}
