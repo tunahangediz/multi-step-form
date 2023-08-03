@@ -1,14 +1,13 @@
-import { useState } from "react";
-import "./App.css";
-import YoutubeForm from "./components/YoutubeForm";
-import useMultiStepForm, { stepsType } from "./hooks/useMultiStepForm";
-import Stepper from "./feature/Form/Stepper";
-import { SubmitHandler, useForm } from "react-hook-form";
-import PersonalInfo from "./feature/Form/PersonalInfo";
 import { DevTool } from "@hookform/devtools";
-import SelectPlan from "./feature/Form/SelectYourPlan/SelectPlan";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import "./App.css";
 import AddOns from "./feature/Form/AddOns";
+import PersonalInfo from "./feature/Form/PersonalInfo";
+import SelectPlan from "./feature/Form/SelectYourPlan/SelectPlan";
+import Stepper from "./feature/Form/Stepper";
 import Summary from "./feature/Form/Summary";
+import useMultiStepForm, { stepsType } from "./hooks/useMultiStepForm";
 
 export interface FormData {
   name: string;

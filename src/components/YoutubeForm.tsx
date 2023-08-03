@@ -1,6 +1,6 @@
-import { FC, FormEventHandler } from "react";
-import { FieldValue, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { FC } from "react";
+import { useForm } from "react-hook-form";
 
 type FormValues = {
   username: string;
