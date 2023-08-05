@@ -2,33 +2,52 @@ import { DevTool } from "@hookform/devtools";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./App.css";
-import AddOns from "./feature/Form/AddOns";
+import AddOns from "./feature/Form/AddOns/AddOns";
 import PersonalInfo from "./feature/Form/PersonalInfo";
 import SelectPlan from "./feature/Form/SelectYourPlan/SelectPlan";
-import Stepper from "./feature/Form/Stepper";
+import Stepper from "./feature/Form/Stepper/Stepper";
 import Summary from "./feature/Form/Summary";
 import useMultiStepForm, { stepsType } from "./hooks/useMultiStepForm";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useMediaQuery } from "usehooks-ts";
+import NavigationButtonGroup from "./feature/Form/NavigationButtonGroup";
 
-export interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  addOns1: boolean;
-  addOns2: boolean;
-  addOns3: boolean;
-  plan: { title: string; price: number };
-}
+const schema = yup.object({
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+  phone: yup.string().required(),
+  addOns1: yup.boolean(),
+  addOns2: yup.boolean(),
+  addOns3: yup.boolean(),
+  plan: yup.object(),
+});
+
+type FormData = yup.InferType<typeof schema>;
 
 function App() {
-  const { register, handleSubmit, control, setValue, getValues } =
-    useForm<FormData>({
-      defaultValues: {
-        plan: { title: "Arcade", price: 9 },
-      },
-    });
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    getValues,
+    formState: { errors, isValid },
+  } = useForm<FormData>({
+    defaultValues: {
+      plan: { title: "Arcade", price: 9 },
+    },
+    resolver: yupResolver(schema),
+    mode: "onTouched",
+  });
+
   const [yearly, setYearly] = useState(false);
+
   const stepsData: stepsType = [
-    { title: "Your Info", element: <PersonalInfo register={register} /> },
+    {
+      title: "Your Info",
+      element: <PersonalInfo register={register} errors={errors} />,
+    },
     {
       title: "select Plan",
       element: (
@@ -37,6 +56,7 @@ function App() {
           yearly={yearly}
           setYearly={setYearly}
           getValues={getValues}
+          setValue={setValue}
         />
       ),
     },
@@ -62,56 +82,50 @@ function App() {
     console.log("fssdfsd");
     console.log(data);
   };
-  // console.log(getValues());
+
+  const isSmallDevice = useMediaQuery("(max-width: 768px)");
   return (
     <>
       {/* <YoutubeForm /> */}
-      <div className="flex w-full items-center justify-center h-screen">
-        <div className="border-2 rounded-md relative p-4 max-w-4xl w-full flex">
+      <div className="flex w-full md:items-center justify-center md:h-screen px-4 md:px-0">
+        {isSmallDevice && (
           <Stepper
             goTo={goTo}
             steps={steps}
             currentStepIndex={currentStepIndex}
+            isSmallScreen={true}
           />
-          <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
-            {currentStepIndex + 1 + "/" + steps.length}
+        )}
+        <div className="top-24 md:top-0 border-2 rounded-md relative md:mt-0 p-4 max-w-4xl w-full flex bg-white">
+          <div className="hidden md:block">
+            <Stepper
+              goTo={goTo}
+              steps={steps}
+              currentStepIndex={currentStepIndex}
+            />
           </div>
+
+          {/* <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
+            {currentStepIndex + 1 + "/" + steps.length}
+          </div> */}
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col justify-between py-12 w-full max-w-lg pl-12"
+            className="flex flex-col justify-between py-2 md:py-12 w-full md:px-12"
           >
+            {/* current form element appear */}
             {step.element}
 
             <DevTool control={control} />
 
-            <div className="flex justify-end items-end w-full mt-auto">
-              {!isFirstStep && (
-                <button
-                  className=" mr-auto text-coolGray"
-                  type="button"
-                  onClick={back}
-                >
-                  Go Back
-                </button>
-              )}
-              {!isLastStep ? (
-                <button
-                  type="button"
-                  onClick={next}
-                  className="bg-marineBlue text-white py-2 px-4 rounded-md"
-                >
-                  Next Step
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleSubmit(onSubmit)}
-                  className="bg-purplishBlue text-white py-2 px-4 rounded-md hover:opacity-80 "
-                >
-                  Confirm
-                </button>
-              )}
-            </div>
+            <NavigationButtonGroup
+              isFirstStep={isFirstStep}
+              isLastStep={isLastStep}
+              isValid={isValid}
+              back={back}
+              next={next}
+              onSubmit={onSubmit}
+              handleSubmit={handleSubmit}
+            />
           </form>
         </div>
       </div>

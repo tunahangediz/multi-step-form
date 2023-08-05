@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.16",
+    "@hookform/resolvers": "^3.1.1",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.45.2"
+    "react-hook-form": "^7.45.2",
+    "usehooks-ts": "^2.9.1",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",

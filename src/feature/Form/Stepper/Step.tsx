@@ -6,9 +6,16 @@ type Props = {
   title?: string;
   isSelected: boolean;
   onClick?: (index: number) => void;
+  isSmallScreen?: boolean;
 };
 
-const Step: FC<Props> = ({ index, title, isSelected, onClick }) => {
+const Step: FC<Props> = ({
+  index,
+  title,
+  isSelected,
+  onClick,
+  isSmallScreen,
+}) => {
   const step = index + 1;
   return (
     <div onClick={() => onClick?.(index)} className="flex items-end gap-4">
@@ -20,10 +27,12 @@ const Step: FC<Props> = ({ index, title, isSelected, onClick }) => {
       >
         {step}
       </div>
-      <div>
-        <span className="text-sm text-coolGray">STEP {step}</span>
-        <p className="text-white font-semibold ">{title?.toUpperCase()}</p>
-      </div>
+      {!isSmallScreen && (
+        <div>
+          <span className="text-sm text-coolGray">STEP {step}</span>
+          <p className="text-white font-semibold ">{title?.toUpperCase()}</p>
+        </div>
+      )}
     </div>
   );
 };
