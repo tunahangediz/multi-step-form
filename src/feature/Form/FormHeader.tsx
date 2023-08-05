@@ -8,7 +8,7 @@ type Props = {
 const FormHeader: FC<Props> = ({ title, description }) => {
   return (
     <div>
-      <h2 className="pb-4 text-4xl font-semibold text-marineBlue">{title}</h2>
+      <h2 className="pb-2 text-4xl font-semibold text-marineBlue">{title}</h2>
       <p className=" text-coolGray ">{description}</p>
     </div>
   );

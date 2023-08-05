@@ -24,10 +24,9 @@ const CustomCheckBox: FC<Props> = ({ item, control, index, yearly }) => {
         <div className="my-4">
           <label
             htmlFor={item.name}
-            className={classNames(
-              "flex gap-4 border border-purplishBlue rounded-md p-4",
-              { "bg-magnolia": field.value }
-            )}
+            className={classNames("flex gap-4 border  rounded-md p-4", {
+              "bg-magnolia border-purplishBlue": field.value,
+            })}
           >
             <input
               id={item.name}
@@ -35,6 +34,7 @@ const CustomCheckBox: FC<Props> = ({ item, control, index, yearly }) => {
               {...field}
               checked={field.value}
               value={5}
+              className="w-5 border-2 border-red-500 rounded-md"
             />
             <div className="flex w-full justify-between items-center">
               <div>

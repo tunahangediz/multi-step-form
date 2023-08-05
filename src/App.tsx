@@ -92,7 +92,7 @@ function App() {
   return (
     <>
       {/* <YoutubeForm /> */}
-      <div className="flex w-full md:items-center justify-center md:h-screen px-4 md:px-0">
+      <div className="flex w-full md:items-center justify-center md:h-screen px-4 md:px-0 bg-magnolia">
         {isSmallDevice && (
           <Stepper
             goTo={goTo}
@@ -101,7 +101,7 @@ function App() {
             isSmallScreen={true}
           />
         )}
-        <div className="top-24 md:top-0 border-2 rounded-md relative md:mt-0 p-4 max-w-4xl w-full flex bg-white">
+        <div className="top-24 md:top-0 border-2 rounded-2xl relative md:mt-0 p-4 max-w-4xl w-full flex bg-white">
           <div className="hidden md:block">
             <Stepper
               goTo={goTo}
