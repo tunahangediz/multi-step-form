@@ -13,6 +13,11 @@ import * as yup from "yup";
 import { useMediaQuery } from "usehooks-ts";
 import NavigationButtonGroup from "./feature/Form/NavigationButtonGroup";
 
+const planSchema = yup.object({
+  title: yup.string().required(),
+  price: yup.number().required(),
+});
+
 const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
@@ -20,7 +25,7 @@ const schema = yup.object({
   addOns1: yup.boolean(),
   addOns2: yup.boolean(),
   addOns3: yup.boolean(),
-  plan: yup.object(),
+  plan: planSchema,
 });
 
 type FormData = yup.InferType<typeof schema>;
@@ -33,7 +38,7 @@ function App() {
     setValue,
     getValues,
     formState: { errors, isValid },
-  } = useForm<FormData>({
+  } = useForm({
     defaultValues: {
       plan: { title: "Arcade", price: 9 },
     },
