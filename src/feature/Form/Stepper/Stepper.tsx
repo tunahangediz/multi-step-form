@@ -30,7 +30,7 @@ const Stepper: FC<StepperProps> = ({
       </div>
     </div>
   ) : (
-    <div className="p-12 bg-bgDesktop  bg-no-repeat w-full md:w-[300px] h-[625px] flex flex-col  bg-cover gap-8 rounded-xl">
+    <div className="p-12 bg-bgDesktop  bg-no-repeat w-full md:w-[380px] h-[625px] flex flex-col  bg-cover gap-8 rounded-xl">
       {steps.map((step: any, key: number) => (
         <Step
           onClick={goTo}
