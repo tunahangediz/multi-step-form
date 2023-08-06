@@ -102,13 +102,13 @@ function App() {
           />
         )}
         <div className="top-24 md:top-0 border-2 rounded-2xl relative md:mt-0 p-4 max-w-4xl w-full flex bg-white">
-          <div className="hidden md:block">
+          {!isSmallDevice && (
             <Stepper
               goTo={goTo}
               steps={steps}
               currentStepIndex={currentStepIndex}
             />
-          </div>
+          )}
 
           {/* <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
             {currentStepIndex + 1 + "/" + steps.length}

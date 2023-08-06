@@ -15,7 +15,7 @@ const Stepper: FC<StepperProps> = ({
   isSmallScreen,
 }) => {
   return isSmallScreen ? (
-    <div className="bg-bgMobile bg-no-repeat absolute top-0 w-full  h-52 ">
+    <div className="bg-bgMobile bg-no-repeat bg-cover absolute top-0 w-screen   h-52 ">
       <div className="flex items-center justify-center gap-4 pt-8">
         {steps.map((step: any, key: number) => (
           <Step
